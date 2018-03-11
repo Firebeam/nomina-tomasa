@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "com.tomasa.rules.interes-politica-habitacional",
+      "type": "java.lang.String",
+      "description": "Description for com.tomasa.rules.interes-politica-habitacional."
+    }
+  ]
+}

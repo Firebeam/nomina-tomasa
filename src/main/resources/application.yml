@@ -1,0 +1,35 @@
+spring:
+  session:
+    store-type: jdbc
+    jdbc:
+      schema: classpath:db/migration/V1__spring_session_table_creation.sql
+  datasource:
+    url: jdbc:mysql://localhost:3306/nominatomasa?verifyServerCertificate=false&useSSL=true
+    platform: mysql
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  flyway:
+    locations: classpath:db/migration/
+  security:
+    user:
+      password: 830427
+com:
+  tomasa:
+    rules:
+      interes-politica-habitacional: 5
+logging:
+  level:
+    org:
+      springframework:
+        security:
+          access: ERROR
