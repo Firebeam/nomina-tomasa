@@ -9,7 +9,7 @@ CREATE TABLE Empleado (
 CREATE TABLE Salario (
   id INT NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(200),
-  monto DOUBLE NOT NULL,
+  monto DECIMAL(20,2) NOT NULL,
   fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id, fecha)
 );
@@ -38,7 +38,7 @@ CREATE TABLE Gasto (
   id INT NOT NULL AUTO_INCREMENT,
   fecha TIMESTAMP NOT NULL,
   descripcion VARCHAR(500) NOT NULL,
-  monto DOUBLE NOT NULL,
+  monto DECIMAL(20,2) NOT NULL,
   status ENUM('Pendiente', 'Pagado') NOT NULL,
   idTipoGasto INT NOT NULL,
   PRIMARY KEY (id),
@@ -48,8 +48,8 @@ CREATE TABLE Gasto (
 CREATE TABLE Prestamo (
   id INT NOT NULL AUTO_INCREMENT,
   idEmpleado INT NOT NULL,
-  montoTotal DOUBLE NOT NULL,
-  saldo DOUBLE NOT NULL,
+  montoTotal DECIMAL(40,2) NOT NULL,
+  saldo DECIMAL(20,2) NOT NULL,
   status ENUM('Pendiente', 'Pagado') NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FOREIGN KEY (idEmpleado) REFERENCES Empleado(id)
@@ -58,7 +58,7 @@ CREATE TABLE Prestamo (
 CREATE TABLE Ingreso (
   id INT NOT NULL AUTO_INCREMENT,
   idPrestamo INT NOT NULL,
-  montoIngreso DOUBLE NOT NULL,
+  montoIngreso DECIMAL(20,2) NOT NULL,
   fecha TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FOREIGN KEY (idPrestamo) REFERENCES Prestamo(id)
