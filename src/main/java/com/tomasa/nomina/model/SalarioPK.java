@@ -3,6 +3,7 @@ package com.tomasa.nomina.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -13,7 +14,7 @@ public class SalarioPK implements Serializable {
 
 	private static final long serialVersionUID = 615862717843889487L;
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 

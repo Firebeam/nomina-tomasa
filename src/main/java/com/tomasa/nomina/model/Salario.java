@@ -22,8 +22,8 @@ public class Salario {
 	@Column(name = "monto", nullable = false, precision = 20, scale = 2)
 	private BigDecimal monto;
 
-	@OneToMany(mappedBy = "salario.id")
-	private Set<EmpleadoXSalario> empleadoXSalarioSet;
+	/*@OneToMany(mappedBy = "salario.id")
+	private Set<EmpleadoXSalario> empleadoXSalarioSet;*/
 
 	public SalarioPK getSalarioPK() {
 		return salarioPK;
@@ -49,13 +49,13 @@ public class Salario {
 		this.monto = monto;
 	}
 
-	public Set<EmpleadoXSalario> getEmpleadoXSalarioSet() {
+	/*public Set<EmpleadoXSalario> getEmpleadoXSalarioSet() {
 		return empleadoXSalarioSet;
 	}
 
 	public void setEmpleadoXSalarioSet(Set<EmpleadoXSalario> empleadoXSalarioSet) {
 		this.empleadoXSalarioSet = empleadoXSalarioSet;
-	}
+	}*/
 
 	@Override
 	public boolean equals(Object o) {

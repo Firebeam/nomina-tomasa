@@ -12,7 +12,7 @@ import java.util.Set;
 public class TipoGasto {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotEmpty
@@ -24,11 +24,11 @@ public class TipoGasto {
 	@Column(name = "activo", nullable = false)
 	private boolean activo;
 
-	@OneToMany(mappedBy = "tipoGasto")
-	private Set<EmpleadoXSalario> empleadoXSalarioSet;
+	/*@OneToMany(mappedBy = "tipoGasto")
+	private Set<EmpleadoXSalario> empleadoXSalarioSet;*/
 
-	@OneToOne(fetch = FetchType.LAZY)
-	private Gasto gasto;
+	/*@OneToOne(fetch = FetchType.LAZY)
+	private Gasto gasto;*/
 
 	public int getId() {
 		return id;
@@ -54,21 +54,21 @@ public class TipoGasto {
 		this.activo = activo;
 	}
 
-	public Set<EmpleadoXSalario> getEmpleadoXSalarioSet() {
+	/*public Set<EmpleadoXSalario> getEmpleadoXSalarioSet() {
 		return empleadoXSalarioSet;
 	}
 
 	public void setEmpleadoXSalarioSet(Set<EmpleadoXSalario> empleadoXSalarioSet) {
 		this.empleadoXSalarioSet = empleadoXSalarioSet;
-	}
+	}*/
 
-	public Gasto getGasto() {
+	/*public Gasto getGasto() {
 		return gasto;
 	}
 
 	public void setGasto(Gasto gasto) {
 		this.gasto = gasto;
-	}
+	}*/
 
 	@Override
 	public boolean equals(Object o) {

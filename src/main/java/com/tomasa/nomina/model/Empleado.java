@@ -12,7 +12,7 @@ import java.util.Set;
 public class Empleado {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotEmpty

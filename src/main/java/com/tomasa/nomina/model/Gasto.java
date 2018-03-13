@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Gasto {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotNull
@@ -30,11 +30,11 @@ public class Gasto {
 	private BigDecimal monto;
 
 	@Enumerated(EnumType.STRING)
-	@NotNull
-	@Column(name = "status", nullable = false)
+	@Column(columnDefinition = "enum('Pagado','Pendiente')")
 	private StatusPago status;
 
-	@OneToOne(mappedBy = "gasto")
+	@OneToOne()
+	@JoinColumn(name="IdTipoGasto")
 	private TipoGasto tipoGasto;
 
 	public int getId() {

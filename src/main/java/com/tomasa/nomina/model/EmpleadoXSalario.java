@@ -10,7 +10,7 @@ import java.util.Objects;
 public class EmpleadoXSalario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne

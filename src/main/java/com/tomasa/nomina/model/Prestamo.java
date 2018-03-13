@@ -11,7 +11,7 @@ import java.util.Set;
 public class Prestamo {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne
@@ -28,8 +28,7 @@ public class Prestamo {
 	private BigDecimal saldo;
 
 	@Enumerated(EnumType.STRING)
-	@NotNull
-	@Column(name = "status", nullable = false)
+	@Column(columnDefinition = "enum('Pagado','Pendiente')")
 	private StatusPago status;
 
 	@OneToMany(mappedBy = "prestamo")
