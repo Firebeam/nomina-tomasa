@@ -33,8 +33,8 @@ public class Gasto {
 	@Column(columnDefinition = "enum('Pagado','Pendiente')")
 	private StatusPago status;
 
-	@OneToOne()
-	@JoinColumn(name="IdTipoGasto")
+	@OneToOne
+	@JoinColumn(name="idTipoGasto")
 	private TipoGasto tipoGasto;
 
 	public int getId() {

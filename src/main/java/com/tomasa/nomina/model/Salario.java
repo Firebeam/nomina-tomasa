@@ -1,11 +1,13 @@
 package com.tomasa.nomina.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "Salario")
@@ -21,9 +23,6 @@ public class Salario {
 	@NotNull
 	@Column(name = "monto", nullable = false, precision = 20, scale = 2)
 	private BigDecimal monto;
-
-	/*@OneToMany(mappedBy = "salario.id")
-	private Set<EmpleadoXSalario> empleadoXSalarioSet;*/
 
 	public SalarioPK getSalarioPK() {
 		return salarioPK;
@@ -48,14 +47,6 @@ public class Salario {
 	public void setMonto(BigDecimal monto) {
 		this.monto = monto;
 	}
-
-	/*public Set<EmpleadoXSalario> getEmpleadoXSalarioSet() {
-		return empleadoXSalarioSet;
-	}
-
-	public void setEmpleadoXSalarioSet(Set<EmpleadoXSalario> empleadoXSalarioSet) {
-		this.empleadoXSalarioSet = empleadoXSalarioSet;
-	}*/
 
 	@Override
 	public boolean equals(Object o) {

@@ -27,11 +27,12 @@ CREATE TABLE EmpleadoXSalario (
   idEmpleado INT NOT NULL,
   idSalario INT NOT NULL,
   cantidadDias INT NOT NULL,
+  fecha TIMESTAMP NOT NULL,
   fechaCalculo TIMESTAMP NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FOREIGN KEY (idTipoGasto) REFERENCES TipoGasto(id),
   CONSTRAINT FOREIGN KEY (idEmpleado) REFERENCES Empleado(id),
-  CONSTRAINT FOREIGN KEY (idSalario) REFERENCES Salario(id)
+  CONSTRAINT FOREIGN KEY (idSalario, fecha) REFERENCES Salario(id, fecha)
 );
 
 CREATE TABLE Gasto (

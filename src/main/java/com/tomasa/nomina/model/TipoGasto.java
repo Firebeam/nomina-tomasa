@@ -5,7 +5,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "TipoGasto")
@@ -23,12 +22,6 @@ public class TipoGasto {
 	@NotNull
 	@Column(name = "activo", nullable = false)
 	private boolean activo;
-
-	/*@OneToMany(mappedBy = "tipoGasto")
-	private Set<EmpleadoXSalario> empleadoXSalarioSet;*/
-
-	/*@OneToOne(fetch = FetchType.LAZY)
-	private Gasto gasto;*/
 
 	public int getId() {
 		return id;
@@ -53,22 +46,6 @@ public class TipoGasto {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
-	/*public Set<EmpleadoXSalario> getEmpleadoXSalarioSet() {
-		return empleadoXSalarioSet;
-	}
-
-	public void setEmpleadoXSalarioSet(Set<EmpleadoXSalario> empleadoXSalarioSet) {
-		this.empleadoXSalarioSet = empleadoXSalarioSet;
-	}*/
-
-	/*public Gasto getGasto() {
-		return gasto;
-	}
-
-	public void setGasto(Gasto gasto) {
-		this.gasto = gasto;
-	}*/
 
 	@Override
 	public boolean equals(Object o) {
