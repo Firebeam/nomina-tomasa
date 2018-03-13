@@ -29,10 +29,10 @@ public class Empleado {
 	@Column(name = "activo", nullable = false)
 	private boolean activo;
 
-	@OneToMany(mappedBy = "idEmpleado")
+	@OneToMany(mappedBy = "empleado")
 	private Set<EmpleadoXSalario> empleadoXSalarioSet;
 
-	@OneToMany(mappedBy = "idEmpleado")
+	@OneToMany(mappedBy = "empleado")
 	private Set<Prestamo> prestamoSet;
 
 	public int getId() {

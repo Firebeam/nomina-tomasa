@@ -34,7 +34,7 @@ public class Gasto {
 	@Column(name = "status", nullable = false)
 	private StatusPago status;
 
-	@OneToOne(mappedBy = "idTipoGasto")
+	@OneToOne(mappedBy = "gasto")
 	private TipoGasto tipoGasto;
 
 	public int getId() {

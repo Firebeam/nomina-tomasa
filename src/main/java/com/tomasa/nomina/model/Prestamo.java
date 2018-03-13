@@ -32,7 +32,7 @@ public class Prestamo {
 	@Column(name = "status", nullable = false)
 	private StatusPago status;
 
-	@OneToMany(mappedBy = "idPrestamo")
+	@OneToMany(mappedBy = "prestamo")
 	private Set<Ingreso> ingresoSet;
 
 	public int getId() {

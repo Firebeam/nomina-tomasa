@@ -22,7 +22,7 @@ public class Salario {
 	@Column(name = "monto", nullable = false, precision = 20, scale = 2)
 	private BigDecimal monto;
 
-	@OneToMany(mappedBy = "idSalario")
+	@OneToMany(mappedBy = "salario.id")
 	private Set<EmpleadoXSalario> empleadoXSalarioSet;
 
 	public SalarioPK getSalarioPK() {

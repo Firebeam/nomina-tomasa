@@ -24,10 +24,10 @@ public class TipoGasto {
 	@Column(name = "activo", nullable = false)
 	private boolean activo;
 
-	@OneToMany(mappedBy = "idTipoGasto")
+	@OneToMany(mappedBy = "tipoGasto")
 	private Set<EmpleadoXSalario> empleadoXSalarioSet;
 
-	@OneToOne(mappedBy = "idTipoGasto")
+	@OneToOne(fetch = FetchType.LAZY)
 	private Gasto gasto;
 
 	public int getId() {

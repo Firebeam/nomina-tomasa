@@ -25,7 +25,10 @@ public class EmpleadoXSalario {
 
 	@ManyToOne
 	@NotNull
-	@JoinColumn(name = "idSalario", nullable = false)
+	@JoinColumns({
+		@JoinColumn(name = "idSalario", referencedColumnName = "id"),
+		@JoinColumn(name = "fecha", referencedColumnName = "fecha")
+	})
 	private Salario salario;
 
 	@NotNull
