@@ -42,8 +42,6 @@ public class TomasaUI extends UI implements ViewDisplay {
 	private Button createNavigationButton(String caption, final String viewName) {
 		Button button = new Button(caption);
 		button.addStyleName(ValoTheme.BUTTON_SMALL);
-		// If you didn't choose Java 8 when creating the project, convert this
-		// to an anonymous listener class
 		button.addClickListener(event -> getUI().getNavigator().navigateTo(viewName));
 		return button;
 	}
