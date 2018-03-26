@@ -1,12 +1,11 @@
 package com.tomasa.nomina.ui;
 
 import com.tomasa.nomina.model.Empleado;
-import com.tomasa.nomina.repository.EmpleadoRepository;
+import com.tomasa.nomina.service.EmpleadoService;
 import com.vaadin.data.Binder;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.spring.annotation.SpringComponent;
-import com.vaadin.spring.annotation.ViewScope;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.TextField;
@@ -14,13 +13,15 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 
 @SpringComponent
-@ViewScope
-public class EmpleadosEditor extends VerticalLayout implements Serializable {
+public class EmpleadosEditor extends VerticalLayout {
 	private static final long serialVersionUID = -1468030563720051051L;
-	private final EmpleadoRepository empleadoRepository;
+
+	private EmpleadoService empleadoService;
+	//private transient EmpleadoRepository empleadoRepository;
 
 	private Empleado empleado;
 
@@ -34,9 +35,12 @@ public class EmpleadosEditor extends VerticalLayout implements Serializable {
 	private Binder<Empleado> binder = new Binder<>(Empleado.class);
 
 	@Autowired
-	public EmpleadosEditor(EmpleadoRepository empleadoRepository) {
-		this.empleadoRepository = empleadoRepository;
+	public EmpleadosEditor(EmpleadoService empleadoService) {
+		this.empleadoService = empleadoService;
+	}
 
+	@PostConstruct
+	void init() {
 		CssLayout actions = new CssLayout(save, cancel, delete);
 		addComponents(nombre, cedula, actions);
 
@@ -47,9 +51,9 @@ public class EmpleadosEditor extends VerticalLayout implements Serializable {
 		save.setStyleName(ValoTheme.BUTTON_PRIMARY);
 		save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-		save.addClickListener((Button.ClickListener & Serializable) e -> empleadoRepository.save(empleado));
-		delete.addClickListener((Button.ClickListener & Serializable) e -> empleado.setActivo(false));
-		cancel.addClickListener((Button.ClickListener & Serializable) e -> editEmpleado(empleado));
+		save.addClickListener((Button.ClickListener & Serializable) e -> empleadoService.save(empleado));
+		delete.addClickListener(e -> empleado.setActivo(false));
+		cancel.addClickListener(e -> editEmpleado(empleado));
 		setVisible(false);
 	}
 
@@ -66,7 +70,7 @@ public class EmpleadosEditor extends VerticalLayout implements Serializable {
 		final boolean persisted = e.getId() != 0;
 
 		if (persisted) {
-			empleado = empleadoRepository.findById(e.getId()).get();
+			empleado = empleadoService.findById(e.getId()).get();
 		} else {
 			empleado = e;
 		}
@@ -80,7 +84,8 @@ public class EmpleadosEditor extends VerticalLayout implements Serializable {
 	}
 
 	public void setChangeHandler(ChangeHandler handler) {
-		save.addClickListener((Button.ClickListener & Serializable) e -> handler.onChange());
-		delete.addClickListener((Button.ClickListener & Serializable) e -> handler.onChange());
+		save.addClickListener(e -> handler.onChange());
+		delete.addClickListener(e -> handler.onChange());
 	}
 }
+

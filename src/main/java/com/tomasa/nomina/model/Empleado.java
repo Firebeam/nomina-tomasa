@@ -4,12 +4,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "Empleado")
-public class Empleado {
+public class Empleado implements Serializable {
+
+	private static final long serialVersionUID = -2923193811970045820L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
