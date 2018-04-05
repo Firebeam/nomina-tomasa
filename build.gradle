@@ -25,11 +25,11 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	maven { url "https://maven.vaadin.com/vaadin-prereleases" }
 }
 
-
 ext {
-	vaadinVersion = '8.3.1'
+	vaadinVersion = '10.0.0.beta4'
 }
 
 dependencies {
@@ -37,7 +37,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('com.vaadin:vaadin-spring-boot-starter')
+	compile('com.vaadin:vaadin-core')
+	compile('com.vaadin:flow-spring-boot-starter')
 	compile('org.flywaydb:flyway-core')
 	compile('org.springframework.session:spring-session-jdbc')
 	runtime('org.springframework.boot:spring-boot-devtools')

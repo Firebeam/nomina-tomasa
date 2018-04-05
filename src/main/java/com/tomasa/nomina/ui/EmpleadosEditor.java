@@ -2,19 +2,15 @@ package com.tomasa.nomina.ui;
 
 import com.tomasa.nomina.model.Empleado;
 import com.tomasa.nomina.service.EmpleadoService;
-import com.vaadin.data.Binder;
-import com.vaadin.event.ShortcutAction;
-import com.vaadin.icons.VaadinIcons;
-import com.vaadin.spring.annotation.SpringComponent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CssLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcons;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.spring.annotation.SpringComponent;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.PostConstruct;
-import java.io.Serializable;
 
 @SpringComponent
 public class EmpleadosEditor extends VerticalLayout {
@@ -28,30 +24,24 @@ public class EmpleadosEditor extends VerticalLayout {
 	private TextField nombre = new TextField("Nombre de empleado");
 	private TextField cedula = new TextField("Cédula de empleado");
 
-	private Button save = new Button("Guardar", VaadinIcons.CHECK);
+	private Button save = new Button("Guardar", new Icon(VaadinIcons.CHECK));
 	private Button cancel = new Button("Cancelar");
-	private Button delete = new Button("Eliminar", VaadinIcons.TRASH);
+	private Button delete = new Button("Eliminar", new Icon(VaadinIcons.TRASH));
 
 	private Binder<Empleado> binder = new Binder<>(Empleado.class);
 
 	@Autowired
 	public EmpleadosEditor(EmpleadoService empleadoService) {
 		this.empleadoService = empleadoService;
-	}
 
-	@PostConstruct
-	void init() {
-		CssLayout actions = new CssLayout(save, cancel, delete);
-		addComponents(nombre, cedula, actions);
+		HorizontalLayout actions = new HorizontalLayout(save, cancel, delete);
+		add(nombre, cedula, actions);
 
 		binder.bindInstanceFields(this);
 
 		setSpacing(true);
-		actions.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
-		save.setStyleName(ValoTheme.BUTTON_PRIMARY);
-		save.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-		save.addClickListener((Button.ClickListener & Serializable) e -> empleadoService.save(empleado));
+		save.addClickListener(e -> empleadoService.save(empleado));
 		delete.addClickListener(e -> empleado.setActivo(false));
 		cancel.addClickListener(e -> editEmpleado(empleado));
 		setVisible(false);
@@ -80,7 +70,6 @@ public class EmpleadosEditor extends VerticalLayout {
 		setVisible(true);
 
 		save.focus();
-		nombre.selectAll();
 	}
 
 	public void setChangeHandler(ChangeHandler handler) {
